@@ -4,9 +4,10 @@ from datetime import date
 
 from core.forms import FeriadoForm
 from .models import FeriadoModel
+from .models import FeriadoModelApi
 from django.db.models import CharField
 from django.db.models.functions import Length
-
+from .FeriadosAPI import FeriadosAPI
 
 def index(request):
 
@@ -36,3 +37,14 @@ def cadastro(request):
         else:
             contexto = {'formulario': formulario}
             return render(request, 'cadastro.html', contexto)
+
+
+def cadastra_feriados_api(request):
+    api = FeriadosAPI(2022)
+
+    for feriado in api.feriados:
+        nome, data = feriado
+        cadastro = FeriadoModelApi(nome=nome, data=data)
+        cadastro.save()
+
+    return HttpResponse('')
