@@ -4,21 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Feriados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <style>
     body{
-        background-color: rgb(132, 173, 199);
+        background-color: #5c555b;
+        font-family: 'Poppins', sans-serif;
     }
 </style>
 
 <body>
 
-    {% if ehferiado %}
-     <h1>Hoje é feriado</h1>
-    {% else %}
-     <h1>Hoje não é feriado</h1>
-    {% endif %}
+    <div class="d-flex align-items-center justify-content-center" style="background-color:#EBEBEBEB; margin-top: 50px; margin-bottom:50px; margin-left:150px; margin-right:150px; padding:50px;">
+        
+        <div>
+        {% if ehferiado %}
+            <h1>Eba! Hoje é feriado!</h1>
+        {% else %}
+            <h1>Poxa, hoje não é feriado D: </h1>
+            <h1> Quem sabe amanhã? </h1>
+        {% endif %}
+
+        <div class="py-5">
+            <a href={% url 'novo_feriado' %} class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Cadastrar um feriado</a>
+
+        </div>
+
+        </div>
+
+        <div style="margin-left:100px; margin-right:50px;">
+        <img src="https://img.freepik.com/vetores-gratis/staycation-no-quintal_52683-40410.jpg?w=740&t=st=1655333175~exp=1655333775~hmac=e51720330d5735473993de2b34385cf4dbb0f8ea5c17fbe1f8ccf34a84a34d08" class="rounded-circle" style="width:400px; height:400px;">
+        </div>
+
+    </div>
+
 
     </body>
 
