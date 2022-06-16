@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from email import message
+from django.shortcuts import render, HttpResponse 
 from datetime import date
 
 from core.forms import FeriadoForm
@@ -10,18 +10,17 @@ from django.db.models.functions import Length
 from .FeriadosAPI import FeriadosAPI
 
 def index(request):
-
     hoje = date.today()
-
+    
     if FeriadoModel.objects.filter(ano=hoje.year, mes=hoje.month, dia=hoje.day).exists():
-        contexto = {
-            'ehferiado': True,
-        }
+        feriados = FeriadoModel.objects.filter(ano=hoje.year, mes=hoje.month, dia=hoje.day)
+        for feriado in feriados:
+            mesage = {f'Hoje é feriado de {f}' for f in feriado}
     else:
-        contexto = {
-            'ehferiado': False,
-        }
-    return render(request, 'index.html', contexto)
+        feriados = None
+        mesage = 'Hoje não é feriado'
+    
+    return render(request, 'index.html', mesage)
 
 
 def cadastro(request):
